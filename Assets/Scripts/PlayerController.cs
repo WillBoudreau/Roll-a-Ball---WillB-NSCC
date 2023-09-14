@@ -6,7 +6,9 @@ public class PlayerController : MonoBehaviour
 {
     private float horizontalInput;
     private float verticalInput;
+    private float jump;
     private float speed = 15f;
+    private float jumpspeed = 5f;
     public Rigidbody rb;
     public GameObject Tp;
     public GameObject Pickup;
@@ -29,9 +31,11 @@ public class PlayerController : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
+        jump = Input.GetAxis("Jump");
     }
     private void Move()
     {
-        rb.AddForce(new Vector3(horizontalInput, 0f, verticalInput) * speed);
+        rb.AddForce(new Vector3(horizontalInput,jump, verticalInput) * speed);
     }
+   
 }
