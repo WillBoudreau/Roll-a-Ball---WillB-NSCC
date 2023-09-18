@@ -23,12 +23,17 @@ public class PlayerController : MonoBehaviour
     {
         count = 0;
         winTextObject.SetActive(false);
+        SetCountText();
     }
 
     // Update is called once per frame
     void Update()
     {
         ProcessInputs();
+    }
+    void SetCountText()
+    {
+        countText.text = "Count " + count.ToString(); 
     }
     private void FixedUpdate()
     {
@@ -49,6 +54,9 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("PickUp"))
         {
             other.gameObject.SetActive(false);
+            score += 100;
+
+            SetCountText();
         }
         
     }  
