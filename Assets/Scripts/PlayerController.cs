@@ -66,4 +66,11 @@ public class PlayerController : MonoBehaviour
         }
         
     }  
+     private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Mud")
+        {
+            GetComponent<Rigidbody>().AddForce(Vector3.up * 10);
+        }
+    }
 }
