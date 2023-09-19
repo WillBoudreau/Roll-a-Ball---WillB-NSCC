@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody rb;
     public GameObject Tp;
     public GameObject Pickup;
-    public TextMeshProUGUI countText;
+    public TextMeshProUGUI scoreText;
     public GameObject winTextObject;
     //Private Variables
     private float horizontalInput;
@@ -17,13 +17,15 @@ public class PlayerController : MonoBehaviour
     private float jump;
     private float speed = 15f;
     private float jumpspeed = 5f;
-    private int count;
+    private int score;
+    private int pickupCount = 5;
     // Start is called before the first frame update
     void Start()
     {
-        count = 0;
-        winTextObject.SetActive(false);
+        score = 0;
+        
         SetCountText();
+        winTextObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -33,7 +35,11 @@ public class PlayerController : MonoBehaviour
     }
     void SetCountText()
     {
-        countText.text = "Count " + count.ToString(); 
+        scoreText.text = "Score " + score.ToString(); 
+        if (score == pickupCount)
+        {
+            winTextObject.SetActive(true);
+        }
     }
     private void FixedUpdate()
     {
