@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
 
             SetCountText();
         }
-        if (other.tag == "Mud")
+        if (other.gameObject.CompareTag("Mud"))
         {
             rb.AddForce(Vector3.up * 100);
         }
