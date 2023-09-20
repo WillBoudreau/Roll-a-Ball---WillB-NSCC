@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public GameObject Tp;
     public GameObject Pickup;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI cubeText;
     public GameObject winTextObject;
     //Private Variables
     private float horizontalInput;
@@ -20,12 +21,14 @@ public class PlayerController : MonoBehaviour
     private float jumpspeed = 5f;
     private int score;
     private int pickupCount = 5;
+    private int cubeCollect;
     // Start is called before the first frame update
     void Start()
     {
         transform.Rotate(Vector3.right * Time.deltaTime * speed);
         Console.ReadKey();
         score = 0;
+        cubeCollect = 0;
         
         SetCountText();
         winTextObject.SetActive(false);
@@ -38,7 +41,8 @@ public class PlayerController : MonoBehaviour
     }
     void SetCountText()
     {
-        scoreText.text = "Score " + score.ToString(); 
+        scoreText.text = "Cube collected: " + cubeCollect.ToString();
+        scoreText.text = "Score: " + score.ToString(); 
         if (score == pickupCount)
         {
             winTextObject.SetActive(true);
