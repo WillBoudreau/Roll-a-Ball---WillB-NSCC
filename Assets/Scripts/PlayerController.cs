@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,7 +10,6 @@ public class PlayerController : MonoBehaviour
     public GameObject Tp;
     public GameObject Pickup;
     public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI cubeText;
     public GameObject winTextObject;
     //Private Variables
     private float horizontalInput;
@@ -21,14 +19,10 @@ public class PlayerController : MonoBehaviour
     private float jumpspeed = 5f;
     private int score;
     private int pickupCount = 5;
-    private int cubeCollect;
     // Start is called before the first frame update
     void Start()
     {
-        transform.Rotate(Vector3.right * Time.deltaTime * speed);
-        Console.ReadKey();
         score = 0;
-        cubeCollect = 0;
         
         SetCountText();
         winTextObject.SetActive(false);
@@ -41,8 +35,7 @@ public class PlayerController : MonoBehaviour
     }
     void SetCountText()
     {
-        scoreText.text = "Cube collected: " + cubeCollect.ToString();
-        scoreText.text = "Score: " + score.ToString(); 
+        scoreText.text = "Score " + score.ToString(); 
         if (score == pickupCount)
         {
             winTextObject.SetActive(true);
@@ -71,13 +64,11 @@ public class PlayerController : MonoBehaviour
 
             SetCountText();
         }
-        
-    }  
-     private void OnTriggerStay(Collider other)
-    {
         if (other.tag == "Mud")
         {
-            GetComponent<Rigidbody>().AddForce(Vector3.up * 10);
+            rb.AddForce(Vector3.up * 100);
         }
-    }
+
+    }  
+     
 }

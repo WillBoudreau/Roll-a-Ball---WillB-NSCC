@@ -13,6 +13,12 @@ public class MudBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+         void OnTriggerStay(Collider other)
+        {
+            if(other.tag == "Mud")
+            {
+                GetComponent<Rigidbody>().AddForce(Vector3.up * 100);
+            }
+        }
     }
 }
