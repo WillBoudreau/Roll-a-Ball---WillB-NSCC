@@ -8,7 +8,6 @@ public class FollowPlayer : MonoBehaviour
     private Vector3 offset;
     private float horizontalInput;
     private  float verticalInput;
-    private float speed = 15f;
     // Start is called before the first frame update
     void Start()
     {

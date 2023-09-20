@@ -11,12 +11,13 @@ public class PlayerController : MonoBehaviour
     public GameObject Pickup;
     public TextMeshProUGUI scoreText;
     public GameObject winTextObject;
+    public float gravityScale = 5f;
     //Private Variables
     private float horizontalInput;
     private float verticalInput;
     private float jump;
     private float speed = 15f;
-    private float jumpspeed = 5f;
+    private int jumpspeed = 5;
     private int score;
     private int pickupCount = 5;
     // Start is called before the first frame update
@@ -54,6 +55,11 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         rb.AddForce(new Vector3(horizontalInput,jump, verticalInput) * speed);
+        //if (jump)
+        { 
+            //rb.AddForce(Physics.gravity * (gravityScale - 1) * rb.mass);
+        }
+       
     }
      private void OnTriggerEnter(Collider other)
     {
