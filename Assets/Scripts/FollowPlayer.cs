@@ -12,13 +12,12 @@ public class FollowPlayer : MonoBehaviour
     void Start()
     {
         offset = transform.position - player.transform.position;
-        horizontalInput = Input.GetAxis("Horizontal 2");
-        verticalInput = Input.GetAxis("Vertical 2");
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.position = offset + player.transform.position;
+        
     }
 }

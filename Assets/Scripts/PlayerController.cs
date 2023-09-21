@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public GameObject Tp;
     public GameObject Pickup;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI remaingText;
     public GameObject winTextObject;
     public float gravityScale = 5f;
     //Private Variables
@@ -17,9 +18,8 @@ public class PlayerController : MonoBehaviour
     private float verticalInput;
     private float jump;
     private float speed = 15f;
-    private int jumpspeed = 5;
     private int score;
-    private int pickupCount = 5;
+    private int pickupCount = 10;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,8 +36,9 @@ public class PlayerController : MonoBehaviour
     }
     void SetCountText()
     {
+        remaingText.text = "Remaining Cubes " + pickupCount.ToString();
         scoreText.text = "Score " + score.ToString(); 
-        if (score == pickupCount)
+        if (score >= 10)
         {
             winTextObject.SetActive(true);
         }
@@ -50,15 +51,10 @@ public class PlayerController : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
-        jump = Input.GetAxis("Jump");
     }
     private void Move()
     {
-        rb.AddForce(new Vector3(horizontalInput,jump, verticalInput) * speed);
-        //if (jump)
-        { 
-            //rb.AddForce(Physics.gravity * (gravityScale - 1) * rb.mass);
-        }
+        rb.AddForce(new Vector3(horizontalInput,0f, verticalInput) * speed);
        
     }
      private void OnTriggerEnter(Collider other)
@@ -66,13 +62,13 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("PickUp"))
         {
             other.gameObject.SetActive(false);
-            score += 100;
-
+            score += 1;
+            pickupCount -= 1;
             SetCountText();
         }
         if (other.gameObject.CompareTag("Mud"))
         {
-            rb.AddForce(Vector3.up * 100);
+            rb.AddForce(Vector3.up * -100);
         }
 
     }  
